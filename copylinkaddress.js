@@ -13,17 +13,29 @@ If, at the time of hover, the cursor was in a textbox (without anything selected
 it is technically a zero-length selection in Chrome. So, the extension goes ahead and clears that selection
 (thereby taking the cursor away from the textbox), saving the caret position.
 When you move away from the link, the caret position is restored.
-
 */
 
+COPYL_DEBUG = true;
+
+let url = chrome.runtime.getURL('sounds/pop.mp3');
+let a = new Audio(url);
+var previousCaretPosition = -1;
 var linkAddress = $('<span id="copylAddress" style="display: inline-block;" />');
 $('body').append(linkAddress);
-// This is a DOM element that has to be selectable but not visible to anybody
+/* This is a DOM element that has to be selectable but not visible to anybody */
 linkAddress.css({position: 'absolute', left:'-9999em'});
 
-var previousCaretPosition = -1;
+/* when the user presses y (=yank), copy URL to clipboard when hovering */
+window.onkeydown = function(event) {
+    if (event.key == "y") {
+        if (linkAddress.text().length != 0) {
+			document.execCommand('copy');
+            a.play();
+        }
+    }
+}
 
-COPYL_DEBUG = false;
+
 
 function write_to_console(text) {
     if (COPYL_DEBUG)
@@ -31,7 +43,7 @@ function write_to_console(text) {
 }
 
 function selectElement(el) {
-    // Check if anything is currently selected, if so backup
+    /* Check if anything is currently selected, if so backup */
     if (window.getSelection().rangeCount > 0) {
         previousCaretPosition = document.activeElement.selectionStart;
     }
@@ -73,9 +85,9 @@ function clearLinkAddress() {
 }
 
 $(function() {
-    // The code attaches itself to all anchor elements
+    /* The code attaches itself to all anchor elements */
     $("html").on("mouseenter", "a", function(){
-        // Everytime the user hovers (enters) a link
+        /* Everytime the user hovers (enters) a link */
         if(window.getSelection().toString()) {
             write_to_console("Something is already selected. Don't do anything.");
         } else {
@@ -88,7 +100,7 @@ $(function() {
 
         write_to_console("Current Selection: " + window.getSelection().toString());
     }).on("mouseleave", "a", function(){
-            // Every time the user leaves a link
+            /* Every time the user leaves a link */
             write_to_console("Leaving link.");
             clearLinkAddress();
         });
@@ -96,5 +108,5 @@ $(function() {
     $(window).on("beforeunload", function() {
         clearLinkAddress();
     });
-
 });
+
