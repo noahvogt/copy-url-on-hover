@@ -1,2 +1,2 @@
 #!/bin/sh
-zip -r copy-url-onhover.xpi -FS * --exclude .git*
+zip -r copy-url-onhover.xpi -FS * --exclude .git* --exclude *.sh

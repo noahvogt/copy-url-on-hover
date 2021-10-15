@@ -22,5 +22,5 @@ You can add the newest via the [firefox add-on on store](https://addons.mozilla.
 
 As you cannot persistently add add-ons to vanilla firefox without using a file that is signed from mozilla, this makes it very much unusable to install a dev version. You would have to install the firefox 'developer edition', and set some about:config flags.
 
-## Known Issue:
+## Known Issue
 For my this bug is not really a problem, but for you it may be one: ***Hovering over a link will make focused text input fields lose focus*** (sometimes only temporarily - focus should be restored when you move away from the link). This fault is not yet resolved due to my very limited JavaScript Skills, but if you claim to be a "modern web developer" you are happily invited to fix this issue, of course.
