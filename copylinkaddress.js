@@ -15,7 +15,7 @@ it is technically a zero-length selection in Chrome. So, the extension goes ahea
 When you move away from the link, the caret position is restored.
 */
 
-COPYL_DEBUG = true;
+COPYL_DEBUG = false;
 
 let url = chrome.runtime.getURL('sounds/pop.mp3');
 let a = new Audio(url);
