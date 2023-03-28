@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
     "name": "Copy URL on Hover",
-    "version": "0.7.0",
-    "description": "Hover over a link and hit Y to yank (copy) it like a real vim user! For feedback, a pop sound will be played after copying.",
+    "version": "0.8.0",
+    "description": "Hover over a link and hit Y to copy (yank) the link address - or hit X to copy the link text! For feedback, a pop sound will be played after copying.",
     "content_scripts": [
         {
         "matches": ["<all_urls>"],
